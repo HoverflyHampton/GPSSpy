@@ -2,7 +2,7 @@ from ublox_gps import UbloxGps
 import serial
 import numpy as np
 
-from HoverflyGPSDetector.gps_jamming_detector import GPSSpy
+from gps_jamming_detector import GPSSpy
 # Can also use SPI here - import spidev
 # I2C is not supported
 
