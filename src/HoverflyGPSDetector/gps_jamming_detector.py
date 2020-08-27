@@ -16,8 +16,8 @@ class GPSSpy(object):
         self.signal[:, 0] = c_n_inputs
 
         self.decision_variable = sum([sum([self.signal[i, k] - 
-                                            ((1.0/self.signal_len) * sum([self.signal[i, m]) 
-                                            for m in range(self.signal_len)]) 
+                                            ((1.0/self.signal_len) * sum([self.signal[i, m] 
+                                            for m in range(self.signal_len)])) 
                                         for i in range(self.num_sats)])**2 
                                     for k in range(self.signal_len)])
         return self.decision_variable
