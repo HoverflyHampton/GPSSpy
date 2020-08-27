@@ -6,10 +6,11 @@ from HoverflyGPSDetector.gps_jamming_detector import GPSSpy
 # Can also use SPI here - import spidev
 # I2C is not supported
 
+NUM_SATS = 71
 port = serial.Serial('/dev/ttyACM0', baudrate=9600, timeout=1)
 gps = UbloxGps(port)
 
-spy = GPSSpy(signal_len=5, num_sats=24)
+spy = GPSSpy(signal_len=5, num_sats=NUM_SATS)
 
 
 def run():
@@ -18,12 +19,11 @@ def run():
     while True:
       try:
         sats = gps.satellites()
-        next_cno = np.zeros(24)
+        next_cno = np.zeros(NUM_SATS)
         sat_dat = [(s.svId, s.cno) for s in sats.RB]
         for val in sat_dat:
             next_cno[val[0]] = val[1]
-        spy.step(next_cno)
-        print(spy.decision_variable)
+        print(spy.step(next_cno))
       except (ValueError, IOError) as err:
         print(err)
 

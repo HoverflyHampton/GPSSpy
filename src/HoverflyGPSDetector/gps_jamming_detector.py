@@ -16,13 +16,20 @@ class GPSSpy(object):
         self.filter.step()
         np.roll(self.signal, 1, axis=1)
         self.signal[:, 0] = c_n_inputs
-        conv = [np.convolve(self.filter.filter_response, self.signal[i, :]) 
-                for i in self.num_sats if c_n_inputs[i] != 0]
-        self.decision_variable = sum([sum([self.signal[i, n] - conv[i][n] 
-                                           for i in range(self.num_sats) 
-                                           if c_n_inputs[i] != 0])
-                                      for n in range(self.signal_len)])
 
-        return self.decision_variable < self.threshold
+        self.decision_variable = sum([sum([self.signal[i, n] - 
+                                            1.0/self.signal_len * sum([self.signal[i, m] 
+                                            for m in range(self.signal_len)]) 
+                                        for i in range(self.num_sats)])**2 
+                                    for n in range(self.signal_len)])
+        return self.decision_variable
+        # conv = [np.convolve(self.filter.filter_response, self.signal[i, :]) 
+        #         for i in self.num_sats]
+        # self.decision_variable = sum([sum([self.signal[i, n] - conv[i][n] 
+        #                                    for i in range(self.num_sats)])
+        #                               for n in range(self.signal_len)])
+
+        # self.decision_variable = self.decision_variable**2
+        # return self.decision_variable < self.threshold
 
 
