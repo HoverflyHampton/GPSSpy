@@ -23,7 +23,7 @@ class GPSSpy(object):
         # return self.decision_variable
 
         conv = [np.convolve(self.filter.filter_response, self.signal[i, :]) 
-                for i in self.num_sats]
+                for i in range(self.num_sats)]
         self.decision_variable = sum([sum([self.signal[i, n] - conv[i][n] 
                                            for i in range(self.num_sats)])**2
                                       for n in range(self.signal_len)])
