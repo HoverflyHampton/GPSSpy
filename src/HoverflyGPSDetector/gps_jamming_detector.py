@@ -12,7 +12,7 @@ class GPSSpy(object):
 
     def step(self, c_n_inputs):
         # self.filter.step()
-        np.roll(self.signal, 1, axis=1)
+        self.signal = np.roll(self.signal, 1, axis=1)
         self.signal[:, 0] = c_n_inputs
 
         self.decision_variable = sum([sum([self.signal[i, k] - 
