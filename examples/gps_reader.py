@@ -3,8 +3,7 @@ import serial
 import numpy as np
 
 from gps_jamming_detector import GPSSpy
-# Can also use SPI here - import spidev
-# I2C is not supported
+
 
 NUM_SATS = 71
 port = serial.Serial('/dev/ttyACM0', baudrate=9600, timeout=1)
