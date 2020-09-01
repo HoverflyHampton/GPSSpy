@@ -2,7 +2,7 @@ from ublox_gps import UbloxGps
 import serial
 import numpy as np
 
-from gps_jamming_detector import GPSSpy
+from hoverfly_gpsspy.gps_spy import GPSSpy
 
 
 NUM_SATS = 71
