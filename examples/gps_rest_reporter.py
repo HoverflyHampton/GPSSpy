@@ -4,8 +4,8 @@ import threading
 import flask
 from flask import request, jsonify
 
-from hoverfly_gps_spy.gps_spy import GPSSpy
-from hoverfly_pgs_spy.serial_socket import SerialSocket
+from gpsspy.gps_spy import GPSSpy
+from gpsspy.serial_socket import SerialSocket
 
 
 NUM_SATS = 71

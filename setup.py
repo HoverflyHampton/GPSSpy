@@ -3,8 +3,6 @@ import setuptools
 with open("README.md", 'r') as fh:
     long_description = fh.read()
 
-print(setuptools.find_packages('src'))
-
 setuptools.setup(
     name="gpsspy",  # Replace with your own username
     version="0.0.2",
@@ -14,7 +12,7 @@ setuptools.setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/HoverflyHampton/Qwiic_Ublox_Gps_Py",
-    packages=setuptools.find_packages('src'),
+    packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)",
