@@ -8,7 +8,7 @@ from gpsspy.gps_spy import GPSSpy
 from gpsspy.serial_socket import SerialSocket
 
 
-NUM_SATS = 71
+NUM_SATS = 255
 PORT_NUM = 15566
 SIG_LEN = 5
 THRESH = 40000
@@ -36,6 +36,7 @@ def background():
         sat_dat = [(s.svId, s.cno) for s in sats.RB]
         for val in sat_dat:
             next_cno[val[0]] = val[1]
+        spy.step(next_cno)
       except (ValueError, IOError):
           pass
 
